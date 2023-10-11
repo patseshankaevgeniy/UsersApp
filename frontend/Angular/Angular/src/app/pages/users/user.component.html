@@ -1,0 +1,41 @@
+
+
+<h2 class="table-name">
+    Таблица пользователей:
+</h2>
+  
+  <table class="users-table">
+    <tr class="users-table-head">
+        <th>Пользователь:</th>
+        <th>Email:</th>
+        <th>Возраст:</th>
+        <th>Роли:</th>
+        <th></th>
+    </tr>
+    <tr 
+    class="users-table-body" 
+    *ngFor="let user of users">
+        <td>{{user.Name}}</td> 
+        <td>{{user.Email}}</td>
+        <td>{{user.Age}}</td>
+        <td>
+           <div *ngFor="let role of user.Roles">{{role}}</div>
+           <button>Добавить</button>
+        </td>
+        <td>
+            <button (click)=" onDeleteClick(user.Id)" >Delete</button>
+        </td>
+    </tr>
+  </table>
+
+  <ngb-pagination 
+    class="d-flex justify-content-center" 
+    [collectionSize]="collectionSize" 
+    [pageSize]="usersPerPage" 
+    [(page)]="page" 
+    [directionLinks]="false"
+    (pageChange)="onPageChanged($event)"></ngb-pagination>    
+
+    <button class="add-user-btn">
+      Добавить пользователя 
+    </button>
